@@ -1,0 +1,52 @@
+.nortxt {
+  display: flex;
+  flex-direction: column; /* Ensures items stack vertically */
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 200px;
+  font-style: italic;
+  color: black;
+  text-align: center;
+}
+
+.text {
+  display: flex;
+  flex-direction: column; /* Ensures items stack vertically */
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-style: italic;
+  text-align: center;
+  height: 100px;
+  color: green; /* Ensures text inside .text div is black */
+}
+.button {
+  display: flex;
+  flex-direction: column; /* Ensures items stack vertically */
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-style: italic;
+  text-align: center;
+  border: none;
+  color: greenyellow;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  top: 70%;
+  left: 50%;
+}

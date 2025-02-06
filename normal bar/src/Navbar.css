@@ -1,0 +1,36 @@
+.topnvm {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  font-style: italic;
+  letter-spacing: 0.15em;
+  line-height: normal;
+  overflow: hidden;
+  background-color: aquamarine;
+}
+.topnvm a.home {
+  padding: 5cap;
+  color: black;
+}
+.topnvm a.news {
+  padding: 5cap;
+  color: blue;
+}
+
+.topnvm a.profile {
+  padding: 5cap;
+  color: pink;
+}
+.topnvm a.about {
+  padding: 5cap;
+  color: orange;
+}
+.topnvm a:hover:not(.active) {
+  background-color: white;
+}
+.topnvm a.active {
+  background-color: blueviolet;
+}
+
+
+
