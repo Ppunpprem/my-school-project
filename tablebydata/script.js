@@ -5,6 +5,10 @@ const data = [
   { name: "Charlie", age: 28, city: "Chicago" },
 ];
 
+// console.log(data.find((value) => value.name === "Bob").age);
+document.querySelector("h3").innerHTML = data.find(
+  (value) => value.name === "Bob"
+).age;
 // Function to populate the table
 function populateTable() {
   const tableBody = document.querySelector("#dataTable tbody");
