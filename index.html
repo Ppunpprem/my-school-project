@@ -5,4 +5,104 @@
 
   <p id="demo"></p>
   <script src="userdata.js"></script>
+
+
+    
+    <style>
+        table, th, td {
+          font-family:Arial;
+          border: 1px solid black;
+          border-collapse: collapse;
+          text-align: center;
+          padding: 10px;}
+
+tr:second-child {
+  background-color: lightgray;
+}
+#SmartCity{
+    color: blue;
+}
+#MeetCompanies{
+    color: red;
+}
+#Closing{
+    background-color: yellow;
+}
+.head{
+    background-color: lightgray;
+}
+#big{
+    border-bottom: 3px solid black;
+    border-top: 3px solid black;
+}
+#bottom{
+    border-bottom: 3px solid black;
+}
+.big{
+    border-bottom: 3px solid black;
+    border-top: 3px solid black;
+}
+p.a {
+  font-family: "Arial", Arial, serif;
+}
+
+        </style>
+        <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2><p class="a">CEi Conference</p></h2>
+    <table>
+    <tr>
+        <td rowspan="2" class="head" id="big"><b>Day</b></td>
+        <td colspan="9" class="head" id="big"><b>Schedule</b></td>
+    </tr>
+    <tr>
+        <td colspan="6" class="head" id="big"><b>Morning</b></td>
+        <td rowspan="10" id="bottom"><i><p>L</p><p>U</p><p>N</p><p>C</p><p>H</p></i></td>
+        <td colspan="2" class="head" id="big"><b>Afternoon</b></td>
+    </tr>
+    <tr>
+        <td rowspan="2" id="big">Mon</td>
+        <td rowspan="2" colspan="6" id="bottom" align="center"><img src=
+            "https://cei.kmitl.ac.th/wp-content/uploads/2024/09/cropped-ceip-fav-1.png" 
+                            alt="CEI Logo" width="50" 
+                            height="50" align="center">&nbsp;&nbsp;&nbsp;<b>Opening</b></td>
+        <td colspan="2">Health Care</td>
+    </tr>
+    <tr>
+        <td id="bottom">HTML 1</td>
+        <td id="bottom">HTML 2</td>
+    </tr>
+    <tr>
+        <td rowspan="6" id="big">Tue</td>
+        <td rowspan="2" colspan="6" id="SmartCity" >Smart City</td>
+        <td rowspan="3" colspan="2" height="40">Posters</td>
+    </tr>
+    <tr></tr>
+
+    <tr>
+        <td rowspan="2" colspan="3">CSS 1</td>
+        <td rowspan="2" colspan="3">CSS 2</td>
+    </tr>
+    <tr>
+        <td rowspan="3" colspan="2" id="MeetCompanies" >Meet Companies</td>
+    </tr>
+    <tr>
+        <td rowspan="2" colspan="6">Business Meeting</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td id="big">Wed</td>
+        <td colspan="2" id="big">JS 1</td>
+        <td colspan="2" id="big">JS 2</td>
+        <td colspan="2" id="big">JS 3</td>
+        <td colspan="2" id="Closing" class="big"><b>Closing</b></td>
+    </tr>
+    </table>
+</body>
 </html>
