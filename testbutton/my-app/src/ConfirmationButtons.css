@@ -38,12 +38,12 @@
 }
 
 /* Active/Selected button colors */
-.yes-button.selected {
-  background-color: #17005a;
+.selected {
+  background-color: red !important;
   color: white;
 }
 
-.no-button.selected {
+/* .selected {
   background-color: #17005a;
   color: white;
-}
+} */
