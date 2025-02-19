@@ -1,52 +1,124 @@
 <!DOCTYPE html>
-<html>
-  <style>
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-    }
-    td,
-    th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-    tr:nth-child(even) {
-      background-color: #dddddd;
-    }
-  </style>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open Library Book Search</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 20px;
+      }
+      input {
+        padding: 10px;
+        width: 300px;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+      table {
+        font-family: Arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+      }
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
   <body>
-    <h2>The XMLHttpRequest Object</h2>
+    <h1>Book Search</h1>
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Search for a book..."
+      onkeypress="handleKeyPress(event)"
+    />
+    <button onclick="fetchBooks()">Search</button>
 
-    <table id="cd">
+    <table id="book-list">
       <tr>
         <th>Title</th>
-        <th>Artist</th>
+        <th>Authors</th>
+        <th>First Publish Year</th>
       </tr>
     </table>
 
     <script>
-      const xhttp = new XMLHttpRequest();
-      xhttp.onload = function () {
-        const xmlDoc = this.responseXML;
-        const artists = xmlDoc.getElementsByTagName("ARTIST");
-        const titles = xmlDoc.getElementsByTagName("TITLE");
-        let txt = "";
-        table_cd = document.getElementById("cd");
-        for (let i = 0; i < titles.length; i++) {
-          let tr = document.createElement("tr");
-          let td_title = document.createElement("td");
-          let td_artist = document.createElement("td");
-          td_title.innerText = titles[i].childNodes[0].nodeValue;
-          td_artist.innerText = artists[i].childNodes[0].nodeValue;
-          tr.appendChild(td_title);
-          tr.appendChild(td_artist);
-          table_cd.appendChild(tr);
+      document.addEventListener("DOMContentLoaded", () => {
+        fetchBooks("the lord of the rings"); // Default book list on page load
+      });
+
+      function handleKeyPress(event) {
+        if (event.key === "Enter") {
+          fetchBooks();
         }
-      };
-      xhttp.open("GET", "cd_catalog.xml");
-      xhttp.send();
+      }
+
+      function fetchBooks(query = null) {
+        if (!query) {
+          query =
+            document.getElementById("search-input").value.trim() ||
+            "the lord of the rings";
+        }
+
+        const apiUrl = `https://openlibrary.org/search.json?q=${encodeURIComponent(
+          query
+        )}`;
+
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            const tableBookList = document.getElementById("book-list");
+
+            // Clear previous search results (keep headers)
+            tableBookList.innerHTML = `
+            <tr>
+              <th>Title</th>
+              <th>Authors</th>
+              <th>First Publish Year</th>
+            </tr>
+          `;
+
+            if (data.docs.length === 0) {
+              let tr = document.createElement("tr");
+              let td = document.createElement("td");
+              td.colSpan = 3;
+              td.innerText = "No results found.";
+              tr.appendChild(td);
+              tableBookList.appendChild(tr);
+              return;
+            }
+
+            data.docs.forEach((doc) => {
+              let tr = document.createElement("tr");
+
+              let tdTitle = document.createElement("td");
+              tdTitle.innerText = doc.title || "N/A";
+              tr.appendChild(tdTitle);
+
+              let tdAuthors = document.createElement("td");
+              tdAuthors.innerText = doc.author_name
+                ? doc.author_name.join(", ")
+                : "N/A";
+              tr.appendChild(tdAuthors);
+
+              let tdYear = document.createElement("td");
+              tdYear.innerText = doc.first_publish_year || "N/A";
+              tr.appendChild(tdYear);
+
+              tableBookList.appendChild(tr);
+            });
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      }
     </script>
   </body>
 </html>
