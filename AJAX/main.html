@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+  <body>
+    <h2>The XMLHttpRequest Object</h2>
+
+    <table id="cd">
+      <tr>
+        <th>Title</th>
+        <th>Artist</th>
+      </tr>
+    </table>
+
+    <script>
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function () {
+        const xmlDoc = this.responseXML;
+        const artists = xmlDoc.getElementsByTagName("ARTIST");
+        const titles = xmlDoc.getElementsByTagName("TITLE");
+        let txt = "";
+        table_cd = document.getElementById("cd");
+        for (let i = 0; i < titles.length; i++) {
+          let tr = document.createElement("tr");
+          let td_title = document.createElement("td");
+          let td_artist = document.createElement("td");
+          td_title.innerText = titles[i].childNodes[0].nodeValue;
+          td_artist.innerText = artists[i].childNodes[0].nodeValue;
+          tr.appendChild(td_title);
+          tr.appendChild(td_artist);
+          table_cd.appendChild(tr);
+        }
+      };
+      xhttp.open("GET", "cd_catalog.xml");
+      xhttp.send();
+    </script>
+  </body>
+</html>
