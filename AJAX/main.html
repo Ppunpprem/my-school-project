@@ -120,5 +120,18 @@
           .catch((error) => console.error("Error fetching data:", error));
       }
     </script>
+    <script>
+      fetch("https://openlibrary.org/search.json?q=the+lord+of+the+rings")
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.docs.length > 0) {
+            console.log(data.docs[0].author_name); // First author's name
+            console.log(data.docs[0].author_key); // First author's key
+          } else {
+            console.log("No results found");
+          }
+        })
+        .catch((error) => console.error("Error fetching data:", error));
+    </script>
   </body>
 </html>
